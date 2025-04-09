@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public Card secondCard;
 
     public Text timeTxt;
+    public Text stageTxt;
     public GameObject endTxt;
     public GameObject overTxt;
 
@@ -19,7 +20,7 @@ public class GameManager : MonoBehaviour
 
 
     public int cardCount = 0;
-    float time = 0.0f;
+    float time = 30.0f;
 
     private void Awake()
     {
@@ -27,19 +28,22 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
+        PlayerPrefs.SetInt("stage", 4);    //스테이지 선택(테스트용)
     }
 
     void Start()
     {
         Time.timeScale = 1.0f;
         audioSource = GetComponent<AudioSource>();
+        int a = PlayerPrefs.GetInt("stage");
+        stageTxt.text = a.ToString();
     }
 
     void Update()
     {
-        time += Time.deltaTime;
+        time -= Time.deltaTime;
         timeTxt.text = time.ToString("N2");
-        if (timeTxt.text == 30.0f.ToString("N2"))
+        if (timeTxt.text == 0.0f.ToString("N2"))
         {
             Time.timeScale = 0.0f;
             overTxt.SetActive(true);

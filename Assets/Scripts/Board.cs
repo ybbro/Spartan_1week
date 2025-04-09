@@ -6,23 +6,50 @@ using System.Linq;
 public class Board : MonoBehaviour
 {
     public GameObject card;
+    float w, h = 1.0f, wgap, hgap;
 
     void Start()
     {
-        int[] arr = {0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7};
-        arr = arr.OrderBy(x => Random.Range(0f, 7f)).ToArray();
-
-         for(int i = 0;i < 16; i++)
+        int stage = PlayerPrefs.GetInt("stage");
+        int[] deck = new int[stage * 8];
+        //스테이지 레벨을 초기화 하는 파트 필요
+        //
+        //
+        //
+        //이번 게임에 나올 카드 고르기
+        for (int i = 0; i < deck.Length; i += 2)
         {
-            GameObject go = Instantiate(card, this.transform);
-
-            float x = (i % 4) * 1.4f - 2.1f;
-            float y = (i / 4) * 1.4f - 3.0f;
-
-            go.transform.position = new Vector2(x,y);
-            go.GetComponent<Card>().Setting(arr[i]);
+            deck[i] = Random.Range((i / (stage * 2)) * 10, ((i / (stage * 2)) * 10 + 10));
+            deck[i + 1] = deck[i];
         }
 
-         GameManager.Instance.cardCount = arr.Length;
+        deck = deck.OrderBy(x => Random.Range(0, deck.Length)).ToArray();
+
+        //카드 배치 가로, 세로 카드의 수, 간격 계산
+        
+        for(int i = 0; i < (stage / 2); i++)
+        {
+            h *= 2;
+        }
+        h *= 2;
+        w = deck.Length / h;
+        wgap = (6.0f - (w)) / (w + 1.0f);
+        hgap = (6.0f - (h)) / (h + 1.0f);
+
+        //자리 지정
+        for (int i = 0; i < deck.Length; i++)
+        {
+            GameObject go = Instantiate(card, this.transform);
+            
+            float x = -3.0f + (wgap + 0.5f) + (i % (int)w) * (wgap + 1.0f);   // 가로 w
+            float y = -3.5f + (hgap + 0.5f) + (int)(i / (int)w) * (hgap + 1.0f);   // 세로 h
+
+            go.transform.position = new Vector2(x, y);
+            go.GetComponent<Card>().Setting(deck[i]);
+        }
+
+        GameManager.Instance.cardCount = deck.Length;
+        GameManager.Instance.cardCount = stage;
     }
+
 }
