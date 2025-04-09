@@ -30,6 +30,7 @@ public class Board : MonoBehaviour
             h *= 2;
         }
         h *= 2;
+        w = deck.Length / h;
 
         if (h < w)    //세로가 가로보다 길게 조정
         {
@@ -38,7 +39,6 @@ public class Board : MonoBehaviour
             w = temp;
         }
 
-        w = deck.Length / h;
         wgap = (6.0f - (w)) / (w + 1.0f);
         hgap = (6.0f - (h)) / (h + 1.0f);
 
@@ -58,5 +58,4 @@ public class Board : MonoBehaviour
         GameManager.Instance.cardCount = deck.Length;
         GameManager.Instance.cardCount = stage;
     }
-
 }
