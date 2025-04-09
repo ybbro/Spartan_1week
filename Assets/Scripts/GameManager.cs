@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
 
 
     public int cardCount = 0;
-    float time = 0.0f;
+    float time = 30.0f;
 
     private void Awake()
     {
@@ -37,9 +37,9 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        time += Time.deltaTime;
+        time -= Time.deltaTime;
         timeTxt.text = time.ToString("N2");
-        if (timeTxt.text == 30.0f.ToString("N2"))
+        if (timeTxt.text == 0.0f.ToString("N2"))
         {
             Time.timeScale = 0.0f;
             overTxt.SetActive(true);

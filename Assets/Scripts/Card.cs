@@ -29,7 +29,7 @@ public class Card : MonoBehaviour
     public void Setting(int number)
     {
         idx = number;
-        frontImage.sprite = Resources.Load<Sprite>($"rtan{idx}");
+        frontImage.sprite = Resources.Load<Sprite>($"{idx}");
     }
 
     public void OpenCard()
