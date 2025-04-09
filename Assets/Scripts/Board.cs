@@ -6,11 +6,11 @@ using System.Linq;
 public class Board : MonoBehaviour
 {
     public GameObject card;
-    int stage = 1;
     float w, h = 1.0f, wgap, hgap;
 
     void Start()
     {
+        int stage = PlayerPrefs.GetInt("stage");
         int[] deck = new int[stage * 8];
         //스테이지 레벨을 초기화 하는 파트 필요
         //

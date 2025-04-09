@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public Card secondCard;
 
     public Text timeTxt;
+    public Text stageTxt;
     public GameObject endTxt;
     public GameObject overTxt;
 
@@ -27,12 +28,15 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
+        PlayerPrefs.SetInt("stage", 4);    //스테이지 선택(테스트용)
     }
 
     void Start()
     {
         Time.timeScale = 1.0f;
         audioSource = GetComponent<AudioSource>();
+        int a = PlayerPrefs.GetInt("stage");
+        stageTxt.text = a.ToString();
     }
 
     void Update()
