@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
-        PlayerPrefs.SetInt("stage", 4);    //스테이지 선택(테스트용)
+        PlayerPrefs.SetInt("stage", 8);    //스테이지 선택(테스트용)
     }
 
     void Start()

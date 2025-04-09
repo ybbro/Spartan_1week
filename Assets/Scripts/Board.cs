@@ -12,11 +12,9 @@ public class Board : MonoBehaviour
     {
         int stage = PlayerPrefs.GetInt("stage");
         int[] deck = new int[stage * 8];
-        //스테이지 레벨을 초기화 하는 파트 필요
-        //
-        //
-        //
-        //이번 게임에 나올 카드 고르기
+
+
+        //이번 게임에 나올 카드를 랜덤으로 고르기
         for (int i = 0; i < deck.Length; i += 2)
         {
             deck[i] = Random.Range((i / (stage * 2)) * 10, ((i / (stage * 2)) * 10 + 10));
@@ -25,16 +23,25 @@ public class Board : MonoBehaviour
 
         deck = deck.OrderBy(x => Random.Range(0, deck.Length)).ToArray();
 
+
         //카드 배치 가로, 세로 카드의 수, 간격 계산
-        
         for(int i = 0; i < (stage / 2); i++)
         {
             h *= 2;
         }
         h *= 2;
+
+        if (h < w)    //세로가 가로보다 길게 조정
+        {
+            float temp = h;
+            h = w;
+            w = temp;
+        }
+
         w = deck.Length / h;
         wgap = (6.0f - (w)) / (w + 1.0f);
         hgap = (6.0f - (h)) / (h + 1.0f);
+
 
         //자리 지정
         for (int i = 0; i < deck.Length; i++)
