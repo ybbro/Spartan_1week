@@ -78,7 +78,7 @@ public class Board : MonoBehaviour
             float x = -3.0f + (wgap + 0.5f) + (i % (int)w) * (wgap + 1.0f);   // 가로 w
             float y = -3.5f + (hgap + 0.5f) + (int)(i / (int)w) * (hgap + 1.0f);   // 세로 h
             go.transform.position = deckPosition;
-            float delay = i * 0.3f;
+            float delay = i * 0.03f;
             if(i+1 == deckLength) { last = true; }
 
             //go.transform.position = new Vector2(x, y);

@@ -32,7 +32,7 @@ public class Card : MonoBehaviour
         
         if (timer > delay)
         {
-            transform.position = Vector3.MoveTowards(transform.position, cardVector, Time.deltaTime * 2);
+            transform.position = Vector3.MoveTowards(transform.position, cardVector, Time.deltaTime * 10);
             
         }
         else { timer += Time.deltaTime; }
