@@ -17,8 +17,8 @@ public class Board : MonoBehaviour
         int stage = PlayerPrefs.GetInt("stage");
         int[] deck = new int[stage * 8];
         cardVector = new Vector3[stage * 8];
+        int tem;
 
-        //이번 게임에 나올 카드 고르기
         bool t = false;
         //이번 게임에 나올 카드 고르기
        for (int i = 0; i < deck.Length; i += 2)
