@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     public int cardCount = 0;
     [SerializeField] float time;
 
-    // Ãâ½Ã Àü¿¡´Â false·Î º¯°æÇÒ °Í!
+    // ì¶œì‹œ ì „ì—ëŠ” falseë¡œ ë³€ê²½í•  ê²ƒ!
     bool isCheatEnabled = true;
 
     private void Awake()
@@ -31,7 +31,6 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
-        //PlayerPrefs.SetInt("stage", 4);    //½ºÅ×ÀÌÁö ¼±ÅÃ(Å×½ºÆ®¿ë)
     }
 
     void Start()
@@ -39,23 +38,22 @@ public class GameManager : MonoBehaviour
         int stage = PlayerPrefs.GetInt("stage");
         stageTxt.text = stage.ToString();
         time = stage * 20.0f;
-
         Time.timeScale = 1.0f;
         audioSource = GetComponent<AudioSource>();
         int a = PlayerPrefs.GetInt("stage");
         stageTxt.text = a.ToString();
-
         AudioManager.Instance.ChangeBGM(AudioManager.Instance.play_bgm);
+
     }
 
     void Update()
     {
         if (isCheatEnabled)
         {
-            // Å×½ºÆ®¸¦ À§ÇÑ Ä¡Æ®
-            if (Input.GetKeyDown(KeyCode.Alpha2)) // 2¹ø ´©¸£¸é ½ÇÆĞ
+            // í…ŒìŠ¤íŠ¸ë¥¼ ìœ„í•œ ì¹˜íŠ¸
+            if (Input.GetKeyDown(KeyCode.Alpha2)) // 2ë²ˆ ëˆ„ë¥´ë©´ ì‹¤íŒ¨
                 time = 0;
-            else if (Input.GetKeyDown(KeyCode.Alpha1)) // 1¹ø ´©¸£¸é ¹Ù·Î ¼º°ø
+            else if (Input.GetKeyDown(KeyCode.Alpha1)) // 1ë²ˆ ëˆ„ë¥´ë©´ ë°”ë¡œ ì„±ê³µ
                 StageClear();
         }
 
@@ -67,7 +65,7 @@ public class GameManager : MonoBehaviour
             timeTxt.text = time.ToString("N2");
             Time.timeScale = 0.0f;
             //overTxt.SetActive(true);
-            // ¿©±â¿¡ ½ÇÆĞ ¾ÀÀ¸·ÎÀÇ ÀüÈ¯
+            // Â—Ñˆë¦°Â—Â Â‹ã…½ÂŒ Â”ÑŠÂœì‡°ÂœÂÂ˜ ï¿½Â„Â™Â˜
             SceneManager.LoadScene("EndingScene");
             PlayerPrefs.SetInt("isClear", 0);
         }
@@ -116,9 +114,9 @@ public class GameManager : MonoBehaviour
             }
         }
         else { PlayerPrefs.SetInt(BS, stage); }
-        // ¿©±â¿¡ ¼º°ø ¾ÀÀ¸·ÎÀÇ ÀüÈ¯
+        // ì—¬ê¸°ì— ì„±ê³µ ì”¬ìœ¼ë¡œì˜ ì „í™˜
         SceneManager.LoadScene("EndingScene");
-        // º¸Åë ÇÁ·Î±×·¡¹Ö¿¡¼­ 0ÀÌ °ÅÁş, 1ÀÌ Âü
+        // ë³´í†µ í”„ë¡œê·¸ë˜ë°ì—ì„œ 0ì´ ê±°ì§“, 1ì´ ì°¸
         PlayerPrefs.SetInt("isClear", 1);
     }
 }

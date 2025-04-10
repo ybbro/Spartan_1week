@@ -19,11 +19,32 @@ public class Board : MonoBehaviour
         cardVector = new Vector3[stage * 8];
 
         //이번 게임에 나올 카드 고르기
-        for (int i = 0; i < deck.Length; i += 2)
-        {
-            deck[i] = Random.Range((i / (stage * 2)) * 10, ((i / (stage * 2)) * 10 + 10));
-            deck[i + 1] = deck[i];
-        }
+        bool t = false;
+        //이번 게임에 나올 카드 고르기
+       for (int i = 0; i < deck.Length; i += 2)
+       {
+           while (true)
+           {
+               //뽑기
+               tem = Random.Range((i / (stage * 2)) * 10 + 1, ((i / (stage * 2)) * 10 + 10));//1~10, 11~20...
+               Debug.Log("tem : "+tem+" / i = "+i);
+
+               //중복체크
+               for(int j = 0; j <= i; j+=2)
+               {
+                   if (deck[j] == tem)  //중복이면 t = true
+                   {
+                       t = true;
+                       break;
+                   }
+                   else { t = false; }
+               }
+               if(t != true) { break; } // t = true면 while루프 계속됨, false면 break
+           }
+           deck[i] = tem;
+           deck[i + 1] = deck[i];
+           t=false;
+       }
 
         deck = deck.OrderBy(x => Random.Range(0, deck.Length)).ToArray();
 
