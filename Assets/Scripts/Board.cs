@@ -12,10 +12,7 @@ public class Board : MonoBehaviour
     {
         int stage = PlayerPrefs.GetInt("stage");
         int[] deck = new int[stage * 8];
-        //스테이지 레벨을 초기화 하는 파트 필요
-        //
-        //
-        //
+
         //이번 게임에 나올 카드 고르기
         for (int i = 0; i < deck.Length; i += 2)
         {
@@ -33,6 +30,14 @@ public class Board : MonoBehaviour
         }
         h *= 2;
         w = deck.Length / h;
+
+        if (h < w)
+        {
+            float temp = w;
+            w = h;
+            h = temp;
+        }
+
         wgap = (6.0f - (w)) / (w + 1.0f);
         hgap = (6.0f - (h)) / (h + 1.0f);
 
