@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
 
 
     public int cardCount = 0;
-    float time = 30.0f;
+    float time;
 
     private void Awake()
     {
@@ -28,16 +28,15 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
-        //PlayerPrefs.SetInt("stage", 4);    //스테이지 선택(테스트용)
     }
 
     void Start()
     {
         Time.timeScale = 1.0f;
         audioSource = GetComponent<AudioSource>();
-        int a = PlayerPrefs.GetInt("stage");
-        stageTxt.text = a.ToString();
-        time = a * 15.0f;
+        int stage = PlayerPrefs.GetInt("stage");
+        stageTxt.text = stage.ToString();
+        time = stage * 15.0f;
     }
 
     void Update()

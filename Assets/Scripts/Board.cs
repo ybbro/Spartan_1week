@@ -2,16 +2,21 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Overlays;
 
 public class Board : MonoBehaviour
 {
     public GameObject card;
+    int deckLength;
     float w = 1.0f, h = 1.0f, wgap, hgap;
+    Vector3[] cardVector;
+    Vector2 deckPosition = new Vector2(0, -3.5f);
 
     void Start()
     {
         int stage = PlayerPrefs.GetInt("stage");
         int[] deck = new int[stage * 8];
+        cardVector = new Vector3[stage * 8];
 
         //이번 게임에 나올 카드 고르기
         for (int i = 0; i < deck.Length; i += 2)
@@ -23,24 +28,22 @@ public class Board : MonoBehaviour
         deck = deck.OrderBy(x => Random.Range(0, deck.Length)).ToArray();
 
         //카드 배치 가로, 세로 카드의 수, 간격 계산
-        int temp_deck = deck.Length, c = 0;
+        deckLength = deck.Length;
+        int c = 0;
         bool b = false;
-        int[] compo = new int[temp_deck];
-        //Debug.Log(temp_deck);
+        int[] compo = new int[deckLength];
 
         while (b == false)
         {
-            if(temp_deck%2 == 0)
+            if(deckLength %2 == 0)
             {
                 compo[c] = 2;
-                temp_deck = temp_deck / 2;
-                //Debug.Log(temp_deck);
+                deckLength = deckLength / 2;
                 c++;
             }
             else
             {
-                compo[c] = temp_deck;
-                //Debug.Log(temp_deck);
+                compo[c] = deckLength;
                 break;
             }
         }
@@ -55,7 +58,6 @@ public class Board : MonoBehaviour
             {
                 w *= compo[i];
             }
-            //Debug.Log("w = " + w + " / h = " + h + " / i = "+i);
         }
 
         if (h < w)
@@ -64,24 +66,34 @@ public class Board : MonoBehaviour
             w = h;
             h = temp;
         }
-        //Debug.Log("w = "+w+" / h = "+h);
 
         wgap = (6.0f - (w)) / (w + 1.0f);
         hgap = (6.0f - (h)) / (h + 1.0f);
+        deckLength = deck.Length;
 
         //자리 지정
-        for (int i = 0; i < deck.Length; i++)
+        for (int i = 0; i < deckLength; i++)
         {
             GameObject go = Instantiate(card, this.transform);
-            
             float x = -3.0f + (wgap + 0.5f) + (i % (int)w) * (wgap + 1.0f);   // 가로 w
             float y = -3.5f + (hgap + 0.5f) + (int)(i / (int)w) * (hgap + 1.0f);   // 세로 h
 
-            go.transform.position = new Vector2(x, y);
-            go.GetComponent<Card>().Setting(deck[i]);
+            go.transform.position = deckPosition;
+
+            //go.transform.position = new Vector2(x, y);
+            go.GetComponent<Card>().Setting(deck[i], new Vector3(x, y, 0));
+            float timer = 0.0f;
+            while (timer < 10.0f)
+            {
+                timer += Time.deltaTime;
+            }
         }
 
         GameManager.Instance.cardCount = deck.Length;
     }
 
+    void Update()
+    {
+        
+    }
 }

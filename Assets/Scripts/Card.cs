@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Overlays;
+using UnityEngine.UIElements;
 
 public class Card : MonoBehaviour
 {
@@ -15,6 +17,7 @@ public class Card : MonoBehaviour
 
     AudioSource audioSource;
     public AudioClip clip;
+    Vector3 cardVector;
 
     void Start()
     {
@@ -23,13 +26,14 @@ public class Card : MonoBehaviour
 
     void Update()
     {
-
+        transform.position = Vector3.MoveTowards(transform.position, cardVector, Time.deltaTime * 2);
     }
 
-    public void Setting(int number)
+    public void Setting(int number, Vector3 vector3)
     {
         idx = number;
         frontImage.sprite = Resources.Load<Sprite>($"{idx}");
+        cardVector = vector3;
     }
 
     public void OpenCard()

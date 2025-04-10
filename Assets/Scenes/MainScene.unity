@@ -316,6 +316,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59fc74064d9112c4bb9ba90bbb2e9820, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stageSelect: {fileID: 0}
+  stageBtn: {fileID: 0}
+  audioSource: {fileID: 0}
+  clip: {fileID: 0}
+  delayTime: 0.3
 --- !u!114 &326245084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -803,6 +808,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59fc74064d9112c4bb9ba90bbb2e9820, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stageSelect: {fileID: 0}
+  stageBtn: {fileID: 0}
+  audioSource: {fileID: 0}
+  clip: {fileID: 0}
+  delayTime: 0.3
 --- !u!114 &1102746887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -951,6 +961,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59fc74064d9112c4bb9ba90bbb2e9820, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stageSelect: {fileID: 0}
+  stageBtn: {fileID: 0}
+  audioSource: {fileID: 0}
+  clip: {fileID: 0}
+  delayTime: 0.3
 --- !u!114 &1186362082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1459,6 +1474,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59fc74064d9112c4bb9ba90bbb2e9820, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stageSelect: {fileID: 0}
+  stageBtn: {fileID: 0}
+  audioSource: {fileID: 0}
+  clip: {fileID: 0}
+  delayTime: 0.3
 --- !u!114 &1397520143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1566,6 +1586,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59fc74064d9112c4bb9ba90bbb2e9820, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stageSelect: {fileID: 0}
+  stageBtn: {fileID: 0}
+  audioSource: {fileID: 0}
+  clip: {fileID: 0}
+  delayTime: 0.3
 --- !u!114 &1631540986
 MonoBehaviour:
   m_ObjectHideFlags: 0
