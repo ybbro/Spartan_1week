@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
-        //PlayerPrefs.SetInt("stage", 4);    //½ºÅ×ÀÌÁö ¼±ÅÃ(Å×½ºÆ®¿ë)
+        //PlayerPrefs.SetInt("stage", 4);    //ìŠ¤í…Œì´ì§€ ì„ íƒ(í…ŒìŠ¤íŠ¸ìš©)
     }
 
     void Start()
@@ -37,11 +37,11 @@ public class GameManager : MonoBehaviour
         int stage = PlayerPrefs.GetInt("stage");
         stageTxt.text = stage.ToString();
         time = stage * 20.0f;
-
         Time.timeScale = 1.0f;
         audioSource = GetComponent<AudioSource>();
         int a = PlayerPrefs.GetInt("stage");
         stageTxt.text = a.ToString();
+
     }
 
     void Update()
@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
         {
             Time.timeScale = 0.0f;
             //overTxt.SetActive(true);
-            // ¿©±â¿¡ ½ÇÆĞ ¾ÀÀ¸·ÎÀÇ ÀüÈ¯
+            // ì—¬ê¸°ì— ì‹¤íŒ¨ ì”¬ìœ¼ë¡œì˜ ì „í™˜
             SceneManager.LoadScene("EndingScene");
             PlayerPrefs.SetInt("isClear", 0);
         }
@@ -86,9 +86,9 @@ public class GameManager : MonoBehaviour
                     }
                 }
                 else { PlayerPrefs.SetInt(BS, stage); }
-                // ¿©±â¿¡ ¼º°ø ¾ÀÀ¸·ÎÀÇ ÀüÈ¯
+                // ì—¬ê¸°ì— ì„±ê³µ ì”¬ìœ¼ë¡œì˜ ì „í™˜
                 SceneManager.LoadScene("EndingScene");
-                // º¸Åë ÇÁ·Î±×·¡¹Ö¿¡¼­ 0ÀÌ °ÅÁş, 1ÀÌ Âü
+                // ë³´í†µ í”„ë¡œê·¸ë˜ë°ì—ì„œ 0ì´ ê±°ì§“, 1ì´ ì°¸
                 PlayerPrefs.SetInt("isClear", 1);
             }
         }
