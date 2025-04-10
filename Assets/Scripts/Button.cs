@@ -1,15 +1,16 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using Unity.VisualScripting;
 
 public class Button : MonoBehaviour
 {
     public GameObject stageSelect;
+    public GameObject stageBtn;
 
     public AudioSource audioSource;
     public AudioClip clip;
     public float delayTime = 0.3f;
-
 
     private void Start()
     {
