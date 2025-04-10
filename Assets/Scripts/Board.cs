@@ -6,7 +6,7 @@ using System.Linq;
 public class Board : MonoBehaviour
 {
     public GameObject card;
-    float w, h = 1.0f, wgap, hgap;
+    float w = 1.0f, h = 1.0f, wgap, hgap;
 
     void Start()
     {
@@ -23,13 +23,40 @@ public class Board : MonoBehaviour
         deck = deck.OrderBy(x => Random.Range(0, deck.Length)).ToArray();
 
         //카드 배치 가로, 세로 카드의 수, 간격 계산
-        
-        for(int i = 0; i < (stage / 2); i++)
+        int temp_deck = deck.Length, c = 0;
+        bool b = false;
+        int[] compo = new int[temp_deck];
+        //Debug.Log(temp_deck);
+
+        while (b == false)
         {
-            h *= 2;
+            if(temp_deck%2 == 0)
+            {
+                compo[c] = 2;
+                temp_deck = temp_deck / 2;
+                //Debug.Log(temp_deck);
+                c++;
+            }
+            else
+            {
+                compo[c] = temp_deck;
+                //Debug.Log(temp_deck);
+                break;
+            }
         }
-        h *= 2;
-        w = deck.Length / h;
+
+        for (int i = c; i >= 0; i--)
+        {
+            if (h < w)
+            {
+                h *= compo[i];
+            }
+            else
+            {
+                w *= compo[i];
+            }
+            //Debug.Log("w = " + w + " / h = " + h + " / i = "+i);
+        }
 
         if (h < w)
         {
@@ -37,6 +64,7 @@ public class Board : MonoBehaviour
             w = h;
             h = temp;
         }
+        //Debug.Log("w = "+w+" / h = "+h);
 
         wgap = (6.0f - (w)) / (w + 1.0f);
         hgap = (6.0f - (h)) / (h + 1.0f);
