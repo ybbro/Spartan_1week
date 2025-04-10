@@ -8,14 +8,14 @@ public class MainButton : MonoBehaviour
     public GameObject stageSelect;
     public GameObject stageBtn;
 
-    public AudioSource audioSource;
-    public AudioClip clip;
+    //public AudioSource audioSource;
+    //public AudioClip clip;
     public float delayTime = 0.3f;
     public int stageNum;
 
     private void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        //audioSource = GetComponent<AudioSource>();
 
         //Time.timeScale = 1;
     }
@@ -40,7 +40,7 @@ public class MainButton : MonoBehaviour
     public void Next()
     {
         // 시작하기! 버튼의 경우, 최고 클리어 스테이지 다음 스테이지를 불러오게끔 변경
-        int nextStage = PlayerPrefs.GetInt("stage")+1;
+        int nextStage = PlayerPrefs.GetInt("stage") + 1;
         PlayerPrefs.SetInt("stage", nextStage);
         StartCoroutine(PlaySoundAndLoadScene("MainScene"));
     }
@@ -56,7 +56,9 @@ public class MainButton : MonoBehaviour
     }
     public void StageSelect()
     {
-        audioSource.PlayOneShot(clip);
+        //audioSource.PlayOneShot(clip);
+        if (AudioManager.Instance)
+            AudioManager.Instance.audioSource.PlayOneShot(AudioManager.Instance.flip_sfx);
         stageSelect.SetActive(true);
     }
     public void Exit()
@@ -66,9 +68,9 @@ public class MainButton : MonoBehaviour
 
     IEnumerator PlaySoundAndLoadScene(string sceneName)
     {
-        if (clip != null && audioSource != null)
+        if (AudioManager.Instance)
         {
-            audioSource.PlayOneShot(clip);
+            AudioManager.Instance.audioSource.PlayOneShot(AudioManager.Instance.flip_sfx);
             yield return new WaitForSecondsRealtime(delayTime);  // delayTime 만큼 대기
         }
 

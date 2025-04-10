@@ -15,15 +15,15 @@ public class Card : MonoBehaviour
 
     public SpriteRenderer frontImage;
 
-    AudioSource audioSource;
-    public AudioClip clip;
+    //AudioSource audioSource;
+    //public AudioClip clip;
 
     float delay, timer = 0;
     Vector3 cardVector;
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        //audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -47,7 +47,8 @@ public class Card : MonoBehaviour
     public void OpenCard()
     {
         if(GameManager.Instance.secondCard != null) return;
-        audioSource.PlayOneShot(clip);
+        //audioSource.PlayOneShot(clip);
+        AudioManager.Instance.audioSource.PlayOneShot(AudioManager.Instance.flip_sfx);
         anim.SetBool("IsOpen", true);
         front.SetActive(true);
         back.SetActive(false);

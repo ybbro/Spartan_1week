@@ -14,16 +14,19 @@ public class GameManager : MonoBehaviour
     public GameObject endTxt;
     public GameObject overTxt;
 
-    AudioSource audioSource;
-    public AudioClip clip;
+    //AudioSource audioSource;
+    //public AudioClip clip;
 
     string BS = "bestStage";
 
     public int cardCount = 0;
     [SerializeField] float time;
 
-    // 출시 전에는 false로 변경할 것!
+    // 출시 전에는 false로 변경할 것! 혹은 치트 자체를 지워도 무관
     bool isCheatEnabled = true;
+    
+    [SerializeField] float urgentTime = 10;
+    bool isTimeEnough;
 
     private void Awake()
     {
@@ -39,11 +42,12 @@ public class GameManager : MonoBehaviour
         stageTxt.text = stage.ToString();
         time = stage * 20.0f;
         Time.timeScale = 1.0f;
-        audioSource = GetComponent<AudioSource>();
+        //audioSource = GetComponent<AudioSource>();
         int a = PlayerPrefs.GetInt("stage");
         stageTxt.text = a.ToString();
-        AudioManager.Instance.ChangeBGM(AudioManager.Instance.play_bgm);
 
+        isTimeEnough = true;
+        AudioManager.Instance.ChangeBGM(AudioManager.Instance.play_bgm);
     }
 
     void Update()
@@ -55,6 +59,8 @@ public class GameManager : MonoBehaviour
                 time = 0;
             else if (Input.GetKeyDown(KeyCode.Alpha1)) // 1번 누르면 바로 성공
                 StageClear();
+            else if (Input.GetKeyDown(KeyCode.Alpha3)) // 3번 누르면 플레이 데이터 초기화
+                PlayerPrefs.DeleteKey("bestStage");
         }
 
         time -= Time.deltaTime;
@@ -69,13 +75,22 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene("EndingScene");
             PlayerPrefs.SetInt("isClear", 0);
         }
+        // 시간이 촉박할 때 긴급하다는 것을 알리는 브금 재생
+        else if(time < urgentTime && isTimeEnough)
+        {
+            isTimeEnough = false;
+            if (AudioManager.Instance)
+                AudioManager.Instance.ChangeBGM(AudioManager.Instance.urgent_bgm);  
+        }
     }
 
     public void Matched()
     {
         if(firstCard.idx == secondCard.idx)
         {
-            audioSource.PlayOneShot(clip);
+            //audioSource.PlayOneShot(clip);
+            if (AudioManager.Instance)
+                AudioManager.Instance.audioSource.PlayOneShot(AudioManager.Instance.correct_sfx);
             firstCard.DestroyCard();
             secondCard.DestroyCard();
             cardCount -= 2;
@@ -86,6 +101,8 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            if (AudioManager.Instance)
+                AudioManager.Instance.audioSource.PlayOneShot(AudioManager.Instance.wrong_sfx);
             firstCard.CloseCard();
             secondCard.CloseCard(); 
         }
