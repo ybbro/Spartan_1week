@@ -27,7 +27,6 @@ public class Board : MonoBehaviour
            {
                //뽑기
                tem = Random.Range((i / (stage * 2)) * 10 + 1, ((i / (stage * 2)) * 10 + 10));//1~10, 11~20...
-               Debug.Log("tem : "+tem+" / i = "+i);
 
                //중복체크
                for(int j = 0; j <= i; j+=2)
