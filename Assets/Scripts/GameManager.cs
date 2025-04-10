@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         int stage = PlayerPrefs.GetInt("stage");
         stageTxt.text = stage.ToString();
-        time = stage * 15.0f;
+        time = stage * 20.0f;
     }
 
     void Update()

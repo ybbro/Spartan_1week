@@ -18,6 +18,7 @@ public class Card : MonoBehaviour
     AudioSource audioSource;
     public AudioClip clip;
 
+    bool last;
     float delay, timer = 0;
     Vector3 cardVector;
 
@@ -32,16 +33,18 @@ public class Card : MonoBehaviour
         if (timer > delay)
         {
             transform.position = Vector3.MoveTowards(transform.position, cardVector, Time.deltaTime * 2);
+            
         }
         else { timer += Time.deltaTime; }
     }
 
-    public void Setting(int number, Vector3 vector3, float delay)
+    public void Setting(int number, Vector3 vector3, float delay, bool last)
     {
         idx = (number+1).ToString();
         frontImage.sprite = Resources.Load<Sprite>(idx);
         cardVector = vector3;
         this.delay = delay;
+        this.last = last;
     }
 
     public void OpenCard()

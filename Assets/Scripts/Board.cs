@@ -70,7 +70,7 @@ public class Board : MonoBehaviour
         wgap = (6.0f - (w)) / (w + 1.0f);
         hgap = (6.0f - (h)) / (h + 1.0f);
         deckLength = deck.Length;
-
+        bool last = false;
         //자리 지정
         for (int i = 0; i < deckLength; i++)
         {
@@ -79,9 +79,10 @@ public class Board : MonoBehaviour
             float y = -3.5f + (hgap + 0.5f) + (int)(i / (int)w) * (hgap + 1.0f);   // 세로 h
             go.transform.position = deckPosition;
             float delay = i * 0.3f;
+            if(i+1 == deckLength) { last = true; }
 
             //go.transform.position = new Vector2(x, y);
-            go.GetComponent<Card>().Setting(deck[i], new Vector3(x, y, 0), delay);
+            go.GetComponent<Card>().Setting(deck[i], new Vector3(x, y, 0), delay, last);
         }
 
         GameManager.Instance.cardCount = deck.Length;
