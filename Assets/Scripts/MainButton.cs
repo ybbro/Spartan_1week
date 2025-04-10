@@ -36,6 +36,15 @@ public class MainButton : MonoBehaviour
         PlayerPrefs.SetInt("stage", nextStage);
         StartCoroutine(PlaySoundAndLoadScene("MainScene"));
     }
+
+    public void Next()
+    {
+        // 시작하기! 버튼의 경우, 최고 클리어 스테이지 다음 스테이지를 불러오게끔 변경
+        int nextStage = PlayerPrefs.GetInt("stage")+1;
+        PlayerPrefs.SetInt("stage", nextStage);
+        StartCoroutine(PlaySoundAndLoadScene("MainScene"));
+    }
+
     public void End()
     {
         StartCoroutine(PlaySoundAndLoadScene("EndingScene"));

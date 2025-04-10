@@ -249,7 +249,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2937483ef469a384b8b4ed3feb99a1b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: 6f2d272203a5cc94c841eab66b202bb1, type: 3}
+  play_bgm: {fileID: 8300000, guid: 6f2d272203a5cc94c841eab66b202bb1, type: 3}
+  urgent_bgm: {fileID: 8300000, guid: 38df556bf1a8f0d45b74533aa79609e0, type: 3}
+  clear_bgm: {fileID: 8300000, guid: 725f92c6f9d907b41bf3b7018a57af88, type: 3}
+  fail_bgm: {fileID: 8300000, guid: 9b94f86deca409742a973225942b5a52, type: 3}
+  correct_sfx: {fileID: 8300000, guid: 17838beca6b975a4e8c106c4c35b9853, type: 3}
+  wrong_sfx: {fileID: 8300000, guid: 2d20bbe78c936304f9118c128d41091a, type: 3}
+  flip_sfx: {fileID: 8300000, guid: a3a3aef95d4d9254683cddf4ac9a634a, type: 3}
 --- !u!4 &19718777
 Transform:
   m_ObjectHideFlags: 0
@@ -321,6 +327,7 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   clip: {fileID: 0}
   delayTime: 0.3
+  stageNum: 0
 --- !u!114 &326245084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -813,6 +820,7 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   clip: {fileID: 0}
   delayTime: 0.3
+  stageNum: 0
 --- !u!114 &1102746887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -966,6 +974,7 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   clip: {fileID: 0}
   delayTime: 0.3
+  stageNum: 0
 --- !u!114 &1186362082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1500,6 +1509,7 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   clip: {fileID: 0}
   delayTime: 0.3
+  stageNum: 0
 --- !u!114 &1397520143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1612,6 +1622,7 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   clip: {fileID: 0}
   delayTime: 0.3
+  stageNum: 0
 --- !u!114 &1631540986
 MonoBehaviour:
   m_ObjectHideFlags: 0
