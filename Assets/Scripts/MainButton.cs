@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 //using Unity.VisualScripting;
 
-public class Button : MonoBehaviour
+public class MainButton : MonoBehaviour
 {
     public GameObject stageSelect;
     public GameObject stageBtn;
@@ -11,6 +11,7 @@ public class Button : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip clip;
     public float delayTime = 0.3f;
+    public int stageNum;
 
     private void Start()
     {
@@ -33,6 +34,11 @@ public class Button : MonoBehaviour
     public void End()
     {
         StartCoroutine(PlaySoundAndLoadScene("EndingScene"));
+    }
+    public void Retry()
+    {
+        PlayerPrefs.SetInt("bestStage", stageNum); // 가장 높은 스테이지를 불러옴
+        StartCoroutine(PlaySoundAndLoadScene("MainScene"));
     }
     public void StageSelect()
     {
