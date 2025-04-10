@@ -82,7 +82,6 @@ public class Board : MonoBehaviour
         }
 
         GameManager.Instance.cardCount = deck.Length;
-        GameManager.Instance.cardCount = stage;
     }
 
 }
