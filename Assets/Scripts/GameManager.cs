@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEditor.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,7 +20,10 @@ public class GameManager : MonoBehaviour
     string BS = "bestStage";
 
     public int cardCount = 0;
-    float time;
+    [SerializeField] float time;
+
+    // 출시 전에는 false로 변경할 것!
+    bool isCheatEnabled = true;
 
     private void Awake()
     {
@@ -29,7 +31,6 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
-        //PlayerPrefs.SetInt("stage", 4);    //스테이지 선택(테스트용)
     }
 
     void Start()
@@ -41,18 +42,30 @@ public class GameManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         int a = PlayerPrefs.GetInt("stage");
         stageTxt.text = a.ToString();
+        AudioManager.Instance.ChangeBGM(AudioManager.Instance.play_bgm);
 
     }
 
     void Update()
     {
+        if (isCheatEnabled)
+        {
+            // 테스트를 위한 치트
+            if (Input.GetKeyDown(KeyCode.Alpha2)) // 2번 누르면 실패
+                time = 0;
+            else if (Input.GetKeyDown(KeyCode.Alpha1)) // 1번 누르면 바로 성공
+                StageClear();
+        }
+
         time -= Time.deltaTime;
         timeTxt.text = time.ToString("N2");
-        if (timeTxt.text == 0.0f.ToString("N2"))
+        if (time < 0)
         {
+            time = 0;
+            timeTxt.text = time.ToString("N2");
             Time.timeScale = 0.0f;
             //overTxt.SetActive(true);
-            // 여기에 실패 씬으로의 전환
+            // ш린 ㅽ ъ쇰 �
             SceneManager.LoadScene("EndingScene");
             PlayerPrefs.SetInt("isClear", 0);
         }
@@ -68,28 +81,7 @@ public class GameManager : MonoBehaviour
             cardCount -= 2;
             if (cardCount <= 0)
             {
-                Time.timeScale = 0.0f;
-                //endTxt.SetActive(true);
-
-                int stage = int.Parse(stageTxt.text);
-                if (PlayerPrefs.HasKey(BS))
-                {
-                    int stageBest = PlayerPrefs.GetInt(BS);
-
-                    if(stage > stageBest)
-                    {
-                        PlayerPrefs.SetInt(BS, stage);
-                    }
-                    else
-                    {
-                        stage = stageBest;
-                    }
-                }
-                else { PlayerPrefs.SetInt(BS, stage); }
-                // 여기에 성공 씬으로의 전환
-                SceneManager.LoadScene("EndingScene");
-                // 보통 프로그래밍에서 0이 거짓, 1이 참
-                PlayerPrefs.SetInt("isClear", 1);
+                StageClear();
             }
         }
         else
@@ -100,5 +92,31 @@ public class GameManager : MonoBehaviour
 
         firstCard = null;
         secondCard = null;
+    }
+
+    void StageClear()
+    {
+        Time.timeScale = 0.0f;
+        //endTxt.SetActive(true);
+
+        int stage = int.Parse(stageTxt.text);
+        if (PlayerPrefs.HasKey(BS))
+        {
+            int stageBest = PlayerPrefs.GetInt(BS);
+
+            if (stage > stageBest)
+            {
+                PlayerPrefs.SetInt(BS, stage);
+            }
+            else
+            {
+                stage = stageBest;
+            }
+        }
+        else { PlayerPrefs.SetInt(BS, stage); }
+        // 여기에 성공 씬으로의 전환
+        SceneManager.LoadScene("EndingScene");
+        // 보통 프로그래밍에서 0이 거짓, 1이 참
+        PlayerPrefs.SetInt("isClear", 1);
     }
 }
