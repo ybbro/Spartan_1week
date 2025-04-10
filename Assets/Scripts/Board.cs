@@ -77,16 +77,10 @@ public class Board : MonoBehaviour
             GameObject go = Instantiate(card, this.transform);
             float x = -3.0f + (wgap + 0.5f) + (i % (int)w) * (wgap + 1.0f);   // 가로 w
             float y = -3.5f + (hgap + 0.5f) + (int)(i / (int)w) * (hgap + 1.0f);   // 세로 h
-
             go.transform.position = deckPosition;
 
             //go.transform.position = new Vector2(x, y);
             go.GetComponent<Card>().Setting(deck[i], new Vector3(x, y, 0));
-            float timer = 0.0f;
-            while (timer < 10.0f)
-            {
-                timer += Time.deltaTime;
-            }
         }
 
         GameManager.Instance.cardCount = deck.Length;

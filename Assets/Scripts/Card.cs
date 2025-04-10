@@ -33,6 +33,7 @@ public class Card : MonoBehaviour
     {
         idx = (number+1).ToString();
         frontImage.sprite = Resources.Load<Sprite>(idx);
+        cardVector = vector3;
     }
 
     public void OpenCard()
