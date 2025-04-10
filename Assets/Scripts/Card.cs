@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 public class Card : MonoBehaviour
 {
-    public int idx = 0;
+    public string idx;
 
     public GameObject front;
     public GameObject back;
@@ -31,9 +31,8 @@ public class Card : MonoBehaviour
 
     public void Setting(int number, Vector3 vector3)
     {
-        idx = number;
-        frontImage.sprite = Resources.Load<Sprite>($"{idx}");
-        cardVector = vector3;
+        idx = (number+1).ToString();
+        frontImage.sprite = Resources.Load<Sprite>(idx);
     }
 
     public void OpenCard()

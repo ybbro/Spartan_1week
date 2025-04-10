@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -46,7 +45,8 @@ public class GameManager : MonoBehaviour
         if (timeTxt.text == 0.0f.ToString("N2"))
         {
             Time.timeScale = 0.0f;
-            overTxt.SetActive(true);
+            //overTxt.SetActive(true);
+            // 여기에 실패 씬으로의 전환 !!!
         }
     }
 
@@ -58,10 +58,11 @@ public class GameManager : MonoBehaviour
             firstCard.DestroyCard();
             secondCard.DestroyCard();
             cardCount -= 2;
-            if (cardCount == 0)
+            if (cardCount <= 0)
             {
                 Time.timeScale = 0.0f;
-                endTxt.SetActive(true);
+                //endTxt.SetActive(true);
+                // 여기에 성공 씬으로의 전환 !!!
             }
         }
         else
