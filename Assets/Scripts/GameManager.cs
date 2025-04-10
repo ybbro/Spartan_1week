@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEditor.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class GameManager : MonoBehaviour
     AudioSource audioSource;
     public AudioClip clip;
 
+    string BS = "bestStage";
 
     public int cardCount = 0;
     float time;
@@ -27,15 +29,19 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
+        //PlayerPrefs.SetInt("stage", 4);    //스테이지 선택(테스트용)
     }
 
     void Start()
     {
-        Time.timeScale = 1.0f;
-        audioSource = GetComponent<AudioSource>();
         int stage = PlayerPrefs.GetInt("stage");
         stageTxt.text = stage.ToString();
-        time = stage * 15.0f;
+        time = stage * 20.0f;
+
+        Time.timeScale = 1.0f;
+        audioSource = GetComponent<AudioSource>();
+        int a = PlayerPrefs.GetInt("stage");
+        stageTxt.text = a.ToString();
     }
 
     void Update()
@@ -46,7 +52,9 @@ public class GameManager : MonoBehaviour
         {
             Time.timeScale = 0.0f;
             //overTxt.SetActive(true);
-            // 여기에 실패 씬으로의 전환 !!!
+            // 여기에 실패 씬으로의 전환
+            SceneManager.LoadScene("EndingScene");
+            PlayerPrefs.SetInt("isClear", 0);
         }
     }
 
@@ -62,7 +70,26 @@ public class GameManager : MonoBehaviour
             {
                 Time.timeScale = 0.0f;
                 //endTxt.SetActive(true);
-                // 여기에 성공 씬으로의 전환 !!!
+
+                int stage = int.Parse(stageTxt.text);
+                if (PlayerPrefs.HasKey(BS))
+                {
+                    int stageBest = PlayerPrefs.GetInt(BS);
+
+                    if(stage > stageBest)
+                    {
+                        PlayerPrefs.SetInt(BS, stage);
+                    }
+                    else
+                    {
+                        stage = stageBest;
+                    }
+                }
+                else { PlayerPrefs.SetInt(BS, stage); }
+                // 여기에 성공 씬으로의 전환
+                SceneManager.LoadScene("EndingScene");
+                // 보통 프로그래밍에서 0이 거짓, 1이 참
+                PlayerPrefs.SetInt("isClear", 1);
             }
         }
         else

@@ -16,6 +16,8 @@ public class MainButton : MonoBehaviour
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+
+        //Time.timeScale = 1;
     }
 
     public void Title()
@@ -29,6 +31,9 @@ public class MainButton : MonoBehaviour
     }
     public void Play()
     {
+        // 시작하기! 버튼의 경우, 최고 클리어 스테이지 다음 스테이지를 불러오게끔 변경
+        int nextStage = PlayerPrefs.GetInt("bestStage", 0) + 1;
+        PlayerPrefs.SetInt("stage", nextStage);
         StartCoroutine(PlaySoundAndLoadScene("MainScene"));
     }
     public void End()
@@ -37,7 +42,7 @@ public class MainButton : MonoBehaviour
     }
     public void Retry()
     {
-        PlayerPrefs.SetInt("bestStage", stageNum); // 가장 높은 스테이지를 불러옴
+        //PlayerPrefs.GetInt("stage"); // 이미 "stage"에 이전에 실패한 스테이지의 값이 들어 있습니다.
         StartCoroutine(PlaySoundAndLoadScene("MainScene"));
     }
     public void StageSelect()
@@ -55,7 +60,7 @@ public class MainButton : MonoBehaviour
         if (clip != null && audioSource != null)
         {
             audioSource.PlayOneShot(clip);
-            yield return new WaitForSeconds(delayTime);  // delayTime 만큼 대기
+            yield return new WaitForSecondsRealtime(delayTime);  // delayTime 만큼 대기
         }
 
         SceneManager.LoadScene(sceneName);
