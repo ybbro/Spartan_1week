@@ -327,6 +327,7 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   clip: {fileID: 0}
   delayTime: 0.3
+  stageNum: 0
 --- !u!114 &326245084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -819,6 +820,7 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   clip: {fileID: 0}
   delayTime: 0.3
+  stageNum: 0
 --- !u!114 &1102746887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -972,6 +974,7 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   clip: {fileID: 0}
   delayTime: 0.3
+  stageNum: 0
 --- !u!114 &1186362082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1506,6 +1509,7 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   clip: {fileID: 0}
   delayTime: 0.3
+  stageNum: 0
 --- !u!114 &1397520143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1618,6 +1622,7 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   clip: {fileID: 0}
   delayTime: 0.3
+  stageNum: 0
 --- !u!114 &1631540986
 MonoBehaviour:
   m_ObjectHideFlags: 0

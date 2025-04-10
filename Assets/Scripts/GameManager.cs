@@ -17,9 +17,13 @@ public class GameManager : MonoBehaviour
     AudioSource audioSource;
     public AudioClip clip;
 
+    string BS = "bestStage";
 
     public int cardCount = 0;
-    float time = 30.0f;
+    [SerializeField] float time;
+
+    // ì¶œì‹œ ì „ì—ëŠ” falseë¡œ ë³€ê²½í•  ê²ƒ!
+    bool isCheatEnabled = true;
 
     private void Awake()
     {
@@ -27,26 +31,43 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
-        //PlayerPrefs.SetInt("stage", 4);    //½ºÅ×ÀÌÁö ¼±ÅÃ(Å×½ºÆ®¿ë)
     }
 
     void Start()
     {
+        int stage = PlayerPrefs.GetInt("stage");
+        stageTxt.text = stage.ToString();
+        time = stage * 20.0f;
         Time.timeScale = 1.0f;
         audioSource = GetComponent<AudioSource>();
         int a = PlayerPrefs.GetInt("stage");
         stageTxt.text = a.ToString();
+        AudioManager.Instance.ChangeBGM(AudioManager.Instance.play_bgm);
+
     }
 
     void Update()
     {
+        if (isCheatEnabled)
+        {
+            // í…ŒìŠ¤íŠ¸ë¥¼ ìœ„í•œ ì¹˜íŠ¸
+            if (Input.GetKeyDown(KeyCode.Alpha2)) // 2ë²ˆ ëˆ„ë¥´ë©´ ì‹¤íŒ¨
+                time = 0;
+            else if (Input.GetKeyDown(KeyCode.Alpha1)) // 1ë²ˆ ëˆ„ë¥´ë©´ ë°”ë¡œ ì„±ê³µ
+                StageClear();
+        }
+
         time -= Time.deltaTime;
         timeTxt.text = time.ToString("N2");
-        if (timeTxt.text == 0.0f.ToString("N2"))
+        if (time < 0)
         {
+            time = 0;
+            timeTxt.text = time.ToString("N2");
             Time.timeScale = 0.0f;
             //overTxt.SetActive(true);
-            // ¿©±â¿¡ ½ÇÆĞ ¾ÀÀ¸·ÎÀÇ ÀüÈ¯ !!!
+            // Â—Ñˆë¦°Â—Â Â‹ã…½ÂŒ Â”ÑŠÂœì‡°ÂœÂÂ˜ ï¿½Â„Â™Â˜
+            SceneManager.LoadScene("EndingScene");
+            PlayerPrefs.SetInt("isClear", 0);
         }
     }
 
@@ -60,9 +81,7 @@ public class GameManager : MonoBehaviour
             cardCount -= 2;
             if (cardCount <= 0)
             {
-                Time.timeScale = 0.0f;
-                //endTxt.SetActive(true);
-                // ¿©±â¿¡ ¼º°ø ¾ÀÀ¸·ÎÀÇ ÀüÈ¯ !!!
+                StageClear();
             }
         }
         else
@@ -73,5 +92,31 @@ public class GameManager : MonoBehaviour
 
         firstCard = null;
         secondCard = null;
+    }
+
+    void StageClear()
+    {
+        Time.timeScale = 0.0f;
+        //endTxt.SetActive(true);
+
+        int stage = int.Parse(stageTxt.text);
+        if (PlayerPrefs.HasKey(BS))
+        {
+            int stageBest = PlayerPrefs.GetInt(BS);
+
+            if (stage > stageBest)
+            {
+                PlayerPrefs.SetInt(BS, stage);
+            }
+            else
+            {
+                stage = stageBest;
+            }
+        }
+        else { PlayerPrefs.SetInt(BS, stage); }
+        // ì—¬ê¸°ì— ì„±ê³µ ì”¬ìœ¼ë¡œì˜ ì „í™˜
+        SceneManager.LoadScene("EndingScene");
+        // ë³´í†µ í”„ë¡œê·¸ë˜ë°ì—ì„œ 0ì´ ê±°ì§“, 1ì´ ì°¸
+        PlayerPrefs.SetInt("isClear", 1);
     }
 }

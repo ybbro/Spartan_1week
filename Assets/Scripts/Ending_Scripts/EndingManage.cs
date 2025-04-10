@@ -6,11 +6,14 @@ public class EndingManage : MonoBehaviour
 
     public Transform Clear_Buttons, Fail_Buttons;
 
-
     void Start()
     {
         // 성공/실패에 따라 bgm, 조작 가능한 버튼 변경
-        //isClear = PlayerPrefs.get << 여기에 스테이지 성공 / 실패에 따라 파라미터 넣어주기
+        if (PlayerPrefs.GetInt("isClear") == 0)
+            isClear = false;
+        else
+            isClear = true;
+
         if (isClear)
         {
             Clear_Buttons.gameObject.SetActive(true);

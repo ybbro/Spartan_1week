@@ -30,14 +30,13 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
-
-        // 기본 브금 재생
-        ChangeBGM(play_bgm);
+        
     }
 
     public void ChangeBGM(AudioClip bgmClip)
