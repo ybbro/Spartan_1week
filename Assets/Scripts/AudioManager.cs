@@ -4,7 +4,8 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
-    AudioSource audioSource;
+    [HideInInspector]
+    public AudioSource audioSource;
 
     // 새로 추가한 사운드 클립들을 오디오 매니저에서 관리
     // 배경음들은 외부 스크립트에서 아래 주석 구문을 통해 호출 가능

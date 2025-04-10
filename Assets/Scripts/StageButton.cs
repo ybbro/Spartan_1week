@@ -10,7 +10,7 @@ public class StageButton : MonoBehaviour
 
     public void Start()
     {
-        if (button)
+        if (button != null)
         {
             int nextStage = PlayerPrefs.GetInt("bestStage", 0) + 1;
 

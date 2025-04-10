@@ -452,8 +452,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageSelect: {fileID: 1749873506}
   stageBtn: {fileID: 0}
-  audioSource: {fileID: 0}
-  clip: {fileID: 8300000, guid: ce7fce9da9eb76e428396ed46a630462, type: 3}
   delayTime: 0.3
   stageNum: 0
 --- !u!1 &151454727
@@ -849,8 +847,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageSelect: {fileID: 0}
   stageBtn: {fileID: 0}
-  audioSource: {fileID: 0}
-  clip: {fileID: 8300000, guid: ce7fce9da9eb76e428396ed46a630462, type: 3}
   delayTime: 0.3
   stageNum: 0
 --- !u!1 &263438120
@@ -2346,8 +2342,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageSelect: {fileID: 0}
   stageBtn: {fileID: 0}
-  audioSource: {fileID: 0}
-  clip: {fileID: 8300000, guid: ce7fce9da9eb76e428396ed46a630462, type: 3}
   delayTime: 0.3
   stageNum: 0
 --- !u!1 &932122486
@@ -2553,6 +2547,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2937483ef469a384b8b4ed3feb99a1b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
   play_bgm: {fileID: 8300000, guid: 6f2d272203a5cc94c841eab66b202bb1, type: 3}
   urgent_bgm: {fileID: 8300000, guid: 38df556bf1a8f0d45b74533aa79609e0, type: 3}
   clear_bgm: {fileID: 8300000, guid: 725f92c6f9d907b41bf3b7018a57af88, type: 3}
@@ -2967,8 +2962,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageSelect: {fileID: 1749873506}
   stageBtn: {fileID: 0}
-  audioSource: {fileID: 0}
-  clip: {fileID: 0}
   delayTime: 0.3
   stageNum: 0
 --- !u!1 &1114527567
