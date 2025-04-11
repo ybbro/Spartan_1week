@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     int chain = 0;
 
     public int cardCount = 0;
-    [SerializeField] float time;
+    public float time;
 
 
    
