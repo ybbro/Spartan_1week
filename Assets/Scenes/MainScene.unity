@@ -257,6 +257,7 @@ MonoBehaviour:
   correct_sfx: {fileID: 8300000, guid: 17838beca6b975a4e8c106c4c35b9853, type: 3}
   wrong_sfx: {fileID: 8300000, guid: 2d20bbe78c936304f9118c128d41091a, type: 3}
   flip_sfx: {fileID: 8300000, guid: a3a3aef95d4d9254683cddf4ac9a634a, type: 3}
+  fireWork_sfx: {fileID: 8300000, guid: 2495cd9a12f6dcb4abdda56f585eadef, type: 3}
 --- !u!4 &19718777
 Transform:
   m_ObjectHideFlags: 0
@@ -1042,6 +1043,7 @@ GameObject:
   - component: {fileID: 1215587603}
   - component: {fileID: 1215587605}
   - component: {fileID: 1215587604}
+  - component: {fileID: 1215587606}
   m_Layer: 5
   m_Name: Hidden
   m_TagString: Untagged
@@ -1090,10 +1092,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 415abd21d1d6dcc48a3fa758cdf52383, type: 3}
-    m_FontSize: 70
+    m_FontSize: 35
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 7
+    m_MinSize: 3
     m_MaxSize: 70
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -1110,6 +1112,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1215587602}
   m_CullTransparentMesh: 1
+--- !u!114 &1215587606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215587602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0682271ba859eef49a6c230a7d89fdd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myText: {fileID: 1215587604}
 --- !u!1 &1245596716
 GameObject:
   m_ObjectHideFlags: 0
@@ -1200,6 +1215,7 @@ GameObject:
   - component: {fileID: 1262071304}
   - component: {fileID: 1262071303}
   - component: {fileID: 1262071305}
+  - component: {fileID: 1262071306}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1228,6 +1244,7 @@ MonoBehaviour:
   cardCount: 0
   time: 0
   urgentTime: 10
+  hiddenMissions: {fileID: 1215587606}
 --- !u!4 &1262071304
 Transform:
   m_ObjectHideFlags: 0
@@ -1339,52 +1356,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &1296468524
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1296468526}
-  - component: {fileID: 1296468525}
-  m_Layer: 0
-  m_Name: Stage2Hidden
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1296468525
+--- !u!114 &1262071306
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1296468524}
+  m_GameObject: {fileID: 1262071302}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07498b299fcdf51448c17f0baeb46bb2, type: 3}
+  m_Script: {fileID: 11500000, guid: 3af9e9ee330222e4aa3d3fcfc7d4d59d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hidden: {fileID: 1215587602}
-  myText: {fileID: 1215587604}
---- !u!4 &1296468526
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1296468524}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1385198344
 GameObject:
   m_ObjectHideFlags: 0
@@ -1961,4 +1944,3 @@ SceneRoots:
   - {fileID: 848314887}
   - {fileID: 1262071304}
   - {fileID: 19718777}
-  - {fileID: 1296468526}

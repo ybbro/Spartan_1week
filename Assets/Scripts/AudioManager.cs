@@ -18,7 +18,7 @@ public class AudioManager : MonoBehaviour
     // AudioManager.Instance.audioSource.PlayOneShot(AudioManager.Instance.클립이름);
     [Space, Header("효과음들")]
     public AudioClip correct_sfx;
-    public AudioClip wrong_sfx, flip_sfx;
+    public AudioClip wrong_sfx, flip_sfx, fireWork_sfx;
 
     private void Awake()
     {

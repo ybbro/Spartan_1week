@@ -2,17 +2,21 @@ using UnityEngine;
 
 public class FireWorkManage : MonoBehaviour
 {
-    public Transform fireWorkEffect;
-    public int effectNum = 3;
+    public float fireDelay = 0.5f;
+    
+    int index = 0;
 
     void Start()
     {
-        
+        InvokeRepeating("CallEffect", 0, fireDelay);
     }
 
-    // Update is called once per frame
-    void Update()
+    void CallEffect()
     {
-        
+        // 이펙트 활성화
+        transform.GetChild(index).gameObject.SetActive(true);
+        // 다음 호출할 이펙트로
+        if (++index >= transform.childCount)
+            index = 0;
     }
 }

@@ -818,8 +818,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teamImages:
-  - {fileID: 486478052}
   - {fileID: 1847888856}
+  - {fileID: 486478052}
   - {fileID: 870461176}
   - {fileID: 2006501820}
   memberInfo_Panel: {fileID: 664871897}
@@ -1826,9 +1826,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageSelect: {fileID: 0}
   stageBtn: {fileID: 0}
-  audioSource: {fileID: 0}
-  clip: {fileID: 8300000, guid: ce7fce9da9eb76e428396ed46a630462, type: 3}
   delayTime: 0.3
+  stageNum: 0
 --- !u!1 &1550452943
 GameObject:
   m_ObjectHideFlags: 0
