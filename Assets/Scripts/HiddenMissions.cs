@@ -55,8 +55,8 @@ public class HiddenMissions : MonoBehaviour
         // 6스테이지에서 히든 미션을 성공하지 못한 상태로
         else if(stage == 6 && !PlayerPrefs.HasKey("Archive2"))
         {
-            // 카드가 4짝 미만으로 남을 경우
-            if (GameManager.Instance.cardCount < 8)
+            // 카드가 4짝 미만으로 남고, 체인이 0일 때
+            if (GameManager.Instance.cardCount < 8 && GameManager.Instance.GetChain() == 0)
             {
                 // 미션을 성공할 수 없기에 실패 문구 알림
                 SetFail();

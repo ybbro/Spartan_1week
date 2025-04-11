@@ -21,7 +21,27 @@ public class GameManager : MonoBehaviour
     string BS = "bestStage";
 
     int stageSixHidden = 4;
-    int chain = 0;
+    private int chain = 0;
+
+    // 접근제한자 private인 변수의 값을 불러오고 쓸 수 있는 "프로퍼티"
+    // 필요한 기능에 따라 get, set 중 하나만 써도 됩니다.
+    //public int GetChain 
+    //{ 
+    //    get { return chain; }
+    //    set { chain = value; }
+    //}
+
+    // 접근제한자 private인 변수의 값을 "메서드"로 설정하는 방법 예시
+    //public void SetChain(int _chain)
+    //{
+    //    chain = _chain;
+    //}
+
+    // 접근제한자 private인 변수의 값을 "메서드"로 불러오는 방법 예시
+    public int GetChain()
+    {
+        return chain;
+    }
 
     public int cardCount = 0;
     public float time;
