@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEditor.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,6 +19,9 @@ public class GameManager : MonoBehaviour
     //public AudioClip clip;
 
     string BS = "bestStage";
+
+    int stageSixHidden = 4;
+    int chain = 0;
 
     public int cardCount = 0;
     [SerializeField] float time;
@@ -86,6 +90,7 @@ public class GameManager : MonoBehaviour
 
     public void Matched()
     {
+        int stage = PlayerPrefs.GetInt("stage");
         if(firstCard.idx == secondCard.idx)
         {
             //audioSource.PlayOneShot(clip);
@@ -94,6 +99,16 @@ public class GameManager : MonoBehaviour
             firstCard.DestroyCard();
             secondCard.DestroyCard();
             cardCount -= 2;
+
+            if (stage == 6)
+            {
+                chain++;
+                if (chain == stageSixHidden)
+                {
+                    PlayerPrefs.SetInt("Archive2", 1);
+                }
+            }
+
             if (cardCount <= 0)
             {
                 StageClear();
@@ -101,6 +116,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            chain = 0;
             if (AudioManager.Instance)
                 AudioManager.Instance.audioSource.PlayOneShot(AudioManager.Instance.wrong_sfx);
             firstCard.CloseCard();
