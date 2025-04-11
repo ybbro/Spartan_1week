@@ -47,7 +47,7 @@ public class ProfileTitle : MonoBehaviour
             memberNameTexts[i] = teamImages[i].transform.GetComponentInChildren<Text>();
 
             // 도전과제를 완료했다면 해당 팀원님 프로필 활성화
-            if(PlayerPrefs.HasKey($"archive{i}"))
+            if(PlayerPrefs.HasKey($"Archive{i}"))
                 InfoEnable(i);
         }
     }
