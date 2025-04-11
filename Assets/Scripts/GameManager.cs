@@ -32,6 +32,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] float urgentTime = 10;
     bool isTimeEnough;
 
+    public HiddenMissions hiddenMissions;
+    Archive3 archive3;
+
     private void Awake()
     {
         if (Instance == null)
@@ -52,6 +55,8 @@ public class GameManager : MonoBehaviour
 
         isTimeEnough = true;
         AudioManager.Instance.ChangeBGM(AudioManager.Instance.play_bgm);
+
+        archive3 = GetComponent<Archive3>();
     }
 
     void Update()
@@ -64,7 +69,11 @@ public class GameManager : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.Alpha1)) // 1번 누르면 바로 성공
                 StageClear();
             else if (Input.GetKeyDown(KeyCode.Alpha3)) // 3번 누르면 플레이 데이터 초기화
-                PlayerPrefs.DeleteKey("bestStage");
+            {
+                int stage_tmp = PlayerPrefs.GetInt("stage");
+                PlayerPrefs.DeleteAll();
+                PlayerPrefs.SetInt("stage", stage_tmp);
+            }
         }
 
         time -= Time.deltaTime;
@@ -100,15 +109,18 @@ public class GameManager : MonoBehaviour
             secondCard.DestroyCard();
             cardCount -= 2;
 
-
             if (stage == 6)
             {
                 chain++;
                 if (chain == stageSixHidden)
                 {
                     PlayerPrefs.SetInt("Archive2", 1);
+                    hiddenMissions.missionTextChange();
                 }
             }
+
+            archive3.matchCountPlus(); // 카드 맞춘 횟수 세어주기(누적)
+            hiddenMissions.missionTextChange(); // 맞출 때마다 횟수 표시 변경
 
             if (cardCount <= 0)
             {
