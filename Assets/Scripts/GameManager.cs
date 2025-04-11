@@ -33,7 +33,8 @@ public class GameManager : MonoBehaviour
     bool isTimeEnough;
 
     public HiddenMissions hiddenMissions;
-    Archive3 archive3;
+
+    public bool isArchive0Clear = true;
 
     private void Awake()
     {
@@ -55,8 +56,6 @@ public class GameManager : MonoBehaviour
 
         isTimeEnough = true;
         AudioManager.Instance.ChangeBGM(AudioManager.Instance.play_bgm);
-
-        archive3 = GetComponent<Archive3>();
     }
 
     void Update()
@@ -119,11 +118,18 @@ public class GameManager : MonoBehaviour
                 }
             }
 
-            archive3.matchCountPlus(); // 카드 맞춘 횟수 세어주기(누적)
-            hiddenMissions.missionTextChange(); // 맞출 때마다 횟수 표시 변경
+            hiddenMissions.matchCountPlus(); // 카드 맞춘 횟수 세어주기(누적) 및 횟수 변경
 
             if (cardCount <= 0)
             {
+                if (stage == 2)
+                {
+                    if (isArchive0Clear)
+                    {
+                        PlayerPrefs.SetInt("Archive0", 1);
+                    }
+                }
+
                 StageClear();
             }
         }

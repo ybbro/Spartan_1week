@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Overlays;
 using UnityEngine.UIElements;
+using JetBrains.Annotations;
 
 public class Card : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class Card : MonoBehaviour
 
     float delay, timer = 0;
     Vector3 cardVector;
+
+    int cardCountNumber = 0;
 
     void Start()
     {
@@ -62,6 +65,13 @@ public class Card : MonoBehaviour
             GameManager.Instance.secondCard = this;
             GameManager.Instance.Matched();
         }
+
+        int level = PlayerPrefs.GetInt("stage");
+
+        if (level == 2)
+        {
+            CardFlipCount();
+        }
     }
 
     public void DestroyCard()
@@ -84,5 +94,18 @@ public class Card : MonoBehaviour
         anim.SetBool("IsOpen", false);
         front.SetActive(false);
         back.SetActive(true);
+    }
+
+    public void CardFlipCount()
+    {
+        if (anim.GetBool("IsOpen"))
+        {
+            cardCountNumber++;
+            if(cardCountNumber >= 3)
+            {
+                GameManager.Instance.isArchive0Clear = false;
+                GameManager.Instance.hiddenMissions.SetFail(); // 미션 실패 텍스트로 변경
+            }
+        }
     }
 }

@@ -1215,7 +1215,6 @@ GameObject:
   - component: {fileID: 1262071304}
   - component: {fileID: 1262071303}
   - component: {fileID: 1262071305}
-  - component: {fileID: 1262071306}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1245,6 +1244,7 @@ MonoBehaviour:
   time: 0
   urgentTime: 10
   hiddenMissions: {fileID: 1215587606}
+  isArchive0Clear: 1
 --- !u!4 &1262071304
 Transform:
   m_ObjectHideFlags: 0
@@ -1356,18 +1356,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1262071306
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1262071302}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3af9e9ee330222e4aa3d3fcfc7d4d59d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1385198344
 GameObject:
   m_ObjectHideFlags: 0
