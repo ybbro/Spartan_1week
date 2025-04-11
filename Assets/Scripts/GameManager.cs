@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     string BS = "bestStage";
 
     public int cardCount = 0;
-    [SerializeField] float time;
+    public float time;
 
     // 출시 전에는 false로 변경할 것! 혹은 치트 자체를 지워도 무관
     bool isCheatEnabled = true;
