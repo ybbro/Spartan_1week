@@ -4,7 +4,7 @@ public class EndingManage : MonoBehaviour
 {
     bool isClear;
 
-    public Transform Clear_Buttons, Fail_Buttons;
+    public Transform Clear_Buttons, Fail_Buttons, fireWorkManager;
 
     void Start()
     {
@@ -20,6 +20,7 @@ public class EndingManage : MonoBehaviour
             Fail_Buttons.gameObject.SetActive(false);
             if (AudioManager.Instance)
                 AudioManager.Instance.ChangeBGM(AudioManager.Instance.clear_bgm);
+            fireWorkManager.gameObject.SetActive(true);
         }
         else
         {
@@ -27,6 +28,7 @@ public class EndingManage : MonoBehaviour
             Fail_Buttons.gameObject.SetActive(true);
             if (AudioManager.Instance)
                 AudioManager.Instance.ChangeBGM(AudioManager.Instance.fail_bgm);
+            fireWorkManager.gameObject.SetActive(false);
         }
     }
 }
