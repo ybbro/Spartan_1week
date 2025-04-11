@@ -26,6 +26,11 @@ public class GameManager : MonoBehaviour
     public int cardCount = 0;
     [SerializeField] float time;
 
+
+   
+    //stage 6 Hidden
+    int stageSixHidden = 2;
+    
     // 출시 전에는 false로 변경할 것! 혹은 치트 자체를 지워도 무관
     bool isCheatEnabled = true;
     
@@ -100,6 +105,7 @@ public class GameManager : MonoBehaviour
             secondCard.DestroyCard();
             cardCount -= 2;
 
+
             if (stage == 6)
             {
                 chain++;
@@ -116,9 +122,11 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            chain = 0;
             if (AudioManager.Instance)
                 AudioManager.Instance.audioSource.PlayOneShot(AudioManager.Instance.wrong_sfx);
+
+            chain = 0;
+
             firstCard.CloseCard();
             secondCard.CloseCard(); 
         }
