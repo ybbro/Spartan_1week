@@ -9,7 +9,7 @@ public class HiddenMissions : MonoBehaviour
     string[] mission = new string[4]
         {
             "동일한 카드를 3번 이상 뒤집지 않기",
-            "20초 내로 4개의 짝을 맞춰라!",
+            "40초 내로 4개의 짝을 맞춰라!",
             "카드 연속으로 4회 맞추기",
             "카드 짝 300회 맞추기"
         };
@@ -27,10 +27,10 @@ public class HiddenMissions : MonoBehaviour
     {
         if (stage == 4)
         {
-            if (GameManager.Instance.cardCount == 8 && GameManager.Instance.time > 20.0f)
+            if (GameManager.Instance.cardCount == 24 && GameManager.Instance.time > 40.0f)
             {
-                PlayerPrefs.SetInt("Archive1", 1); // 으잉.. 다른 미션과 스테이지에 들어가 있어서 수정
-                missionTextChange(); // 미션 성공 문구로 변경
+                PlayerPrefs.SetInt("Archive1", 1);
+                missionTextChange();
             }
         }
     }
