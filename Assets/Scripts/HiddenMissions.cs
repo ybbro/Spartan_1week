@@ -34,14 +34,15 @@ public class HiddenMissions : MonoBehaviour
 
     void Update()
     {
-        if (stage == 4 && !PlayerPrefs.HasKey("Archive1"))
+        // 4/11 밤 수정 : 해당 도전과제를 작업하신 팀원님의 프로필이 해금되게끔 하기 위해 달성 시 써주는 Archive0 와 Archive1을 맞바꾸었습니다.
+        if (stage == 4 && !PlayerPrefs.HasKey("Archive0"))
         {
             // 제한 시간 내 4짝 이상을 맞춘 상태라면 업적 달성하고 텍스트 변경
             if (GameManager.Instance.time > 40.0f)
             {
                 if (GameManager.Instance.cardCount < 24)
                 {
-                    PlayerPrefs.SetInt("Archive1", 1);
+                    PlayerPrefs.SetInt("Archive0", 1);
                     missionTextChange();
                 }
             }
@@ -69,7 +70,7 @@ public class HiddenMissions : MonoBehaviour
         myText.text = "";
         if (stage == 2)
         {
-            if (PlayerPrefs.HasKey("Archive0"))
+            if (PlayerPrefs.HasKey("Archive1"))
                 myText.text += success;
             else if (isMissionFail)
                 myText.text += failure;
@@ -78,7 +79,7 @@ public class HiddenMissions : MonoBehaviour
         }
         if (stage == 4)
         {
-            if (PlayerPrefs.HasKey("Archive1"))
+            if (PlayerPrefs.HasKey("Archive0"))
                 myText.text += success;
             else if(isMissionFail)
                 myText.text += failure;

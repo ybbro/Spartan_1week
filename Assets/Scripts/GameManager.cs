@@ -54,7 +54,9 @@ public class GameManager : MonoBehaviour
 
     public HiddenMissions hiddenMissions;
 
-    public bool isArchive0Clear = true;
+
+    // 4/11 밤 수정 : 해당 도전과제를 작업하신 팀원님의 프로필이 해금되게끔 하기 위해 달성 시 써주는 Archive0 와 Archive1을 맞바꾸었습니다.
+    public bool isArchive1Clear = true;
 
     private void Awake()
     {
@@ -144,9 +146,9 @@ public class GameManager : MonoBehaviour
             {
                 if (stage == 2)
                 {
-                    if (isArchive0Clear)
+                    if (isArchive1Clear)
                     {
-                        PlayerPrefs.SetInt("Archive0", 1);
+                        PlayerPrefs.SetInt("Archive1", 1);
                     }
                 }
 

@@ -103,7 +103,7 @@ public class Card : MonoBehaviour
             cardCountNumber++;
             if(cardCountNumber >= 3)
             {
-                GameManager.Instance.isArchive0Clear = false;
+                GameManager.Instance.isArchive1Clear = false;
                 GameManager.Instance.hiddenMissions.SetFail(); // 미션 실패 텍스트로 변경
             }
         }

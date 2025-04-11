@@ -11,7 +11,7 @@ public class ProfileTitle : MonoBehaviour
     Image[] frameImages;
     Text[] memberNameTexts;
 
-    string[] memberNames = new string[4] { "곽미주", "안홍현",  "이서형", "박유빈", };
+    string[] memberNames = new string[4] { "안홍현", "곽미주",   "이서형", "박유빈", };
 
     void Start()
     {
