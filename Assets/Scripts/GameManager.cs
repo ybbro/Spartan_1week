@@ -25,11 +25,6 @@ public class GameManager : MonoBehaviour
 
     public int cardCount = 0;
     public float time;
-
-
-   
-    //stage 6 Hidden
-    int stageSixHidden = 2;
     
     // 출시 전에는 false로 변경할 것! 혹은 치트 자체를 지워도 무관
     bool isCheatEnabled = true;
