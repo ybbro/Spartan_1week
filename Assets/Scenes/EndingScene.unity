@@ -244,6 +244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Clear_Buttons: {fileID: 1589058464}
   Fail_Buttons: {fileID: 964494641}
+  fireWorkManager: {fileID: 1934191528}
 --- !u!1 &116034775
 GameObject:
   m_ObjectHideFlags: 0
