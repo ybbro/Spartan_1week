@@ -11,7 +11,7 @@ public class ProfileTitle : MonoBehaviour
     Image[] frameImages;
     Text[] memberNameTexts;
 
-    string[] memberNames = new string[4] { "안홍현", "곽미주", "이서형", "박유빈", };
+    string[] memberNames = new string[4] { "곽미주", "안홍현",  "이서형", "박유빈", };
 
     void Start()
     {
@@ -45,6 +45,10 @@ public class ProfileTitle : MonoBehaviour
 
             // 팀원님 이름을 표시하는 텍스트 오브젝트는 이미지 오브젝트의 자식 오브젝트이기에 GetComponentInChildren을 사용하여 찾기
             memberNameTexts[i] = teamImages[i].transform.GetComponentInChildren<Text>();
+
+            // 도전과제를 완료했다면 해당 팀원님 프로필 활성화
+            if(PlayerPrefs.HasKey($"archive{i}"))
+                InfoEnable(i);
         }
     }
 
