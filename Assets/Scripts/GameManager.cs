@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEditor.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,9 +20,17 @@ public class GameManager : MonoBehaviour
 
     string BS = "bestStage";
 
+    int stageSixHidden = 4;
+    int chain = 0;
+
     public int cardCount = 0;
     public float time;
 
+
+   
+    //stage 6 Hidden
+    int stageSixHidden = 2;
+    
     // 출시 전에는 false로 변경할 것! 혹은 치트 자체를 지워도 무관
     bool isCheatEnabled = true;
     
@@ -86,6 +95,7 @@ public class GameManager : MonoBehaviour
 
     public void Matched()
     {
+        int stage = PlayerPrefs.GetInt("stage");
         if(firstCard.idx == secondCard.idx)
         {
             //audioSource.PlayOneShot(clip);
@@ -94,6 +104,17 @@ public class GameManager : MonoBehaviour
             firstCard.DestroyCard();
             secondCard.DestroyCard();
             cardCount -= 2;
+
+
+            if (stage == 6)
+            {
+                chain++;
+                if (chain == stageSixHidden)
+                {
+                    PlayerPrefs.SetInt("Archive2", 1);
+                }
+            }
+
             if (cardCount <= 0)
             {
                 StageClear();
@@ -103,6 +124,9 @@ public class GameManager : MonoBehaviour
         {
             if (AudioManager.Instance)
                 AudioManager.Instance.audioSource.PlayOneShot(AudioManager.Instance.wrong_sfx);
+
+            chain = 0;
+
             firstCard.CloseCard();
             secondCard.CloseCard(); 
         }
