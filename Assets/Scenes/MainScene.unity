@@ -257,6 +257,7 @@ MonoBehaviour:
   correct_sfx: {fileID: 8300000, guid: 17838beca6b975a4e8c106c4c35b9853, type: 3}
   wrong_sfx: {fileID: 8300000, guid: 2d20bbe78c936304f9118c128d41091a, type: 3}
   flip_sfx: {fileID: 8300000, guid: a3a3aef95d4d9254683cddf4ac9a634a, type: 3}
+  fireWork_sfx: {fileID: 8300000, guid: 2495cd9a12f6dcb4abdda56f585eadef, type: 3}
 --- !u!4 &19718777
 Transform:
   m_ObjectHideFlags: 0
