@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviour
     public int cardCount = 0;
     [SerializeField] float time;
 
+    //stage 6 Hidden
+    int stageSixHidden = 2;
+
     // 출시 전에는 false로 변경할 것!
     bool isCheatEnabled = true;
 
@@ -73,12 +76,27 @@ public class GameManager : MonoBehaviour
 
     public void Matched()
     {
-        if(firstCard.idx == secondCard.idx)
+        int stage = PlayerPrefs.GetInt("stage");
+        int chain = 0;
+        if (firstCard.idx == secondCard.idx)
         {
             audioSource.PlayOneShot(clip);
             firstCard.DestroyCard();
             secondCard.DestroyCard();
             cardCount -= 2;
+
+            if(stage == 2)
+            {
+                Debug.Log("스테이지2");
+                chain++;
+                if (chain == stageSixHidden)
+                {
+                    // 히든미션 클리어
+                    Debug.Log("히든미션 클리어");
+                    PlayerPrefs.SetInt("Archive2", 1);
+                }
+            }
+
             if (cardCount <= 0)
             {
                 StageClear();
@@ -86,6 +104,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            chain = 0;
             firstCard.CloseCard();
             secondCard.CloseCard(); 
         }
